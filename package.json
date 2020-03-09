@@ -4,7 +4,7 @@
 	"description": "Naruči pizzu",
 	"icon": "images/dt.png",
 	"version": "0.0.1",
-	"publisher": "dobartek.hr",
+	"publisher": "mmarinovic",
 	"engines": {
 		"vscode": "^1.42.0"
 	},
@@ -12,22 +12,59 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:extension.helloWorld"
-	],
+        "onCommand:extension.dobartekPizza"
+    ],
 	"keywords": [
 		"order pizza naruci dobartek"
 	],
-	"homepage": "https://github.com/jordancraig/vspizza",
+	"homepage": "https://github.com/mmarinovic/vscode-dobartek-pizza",
     "bugs": {
-      "url": "https://github.com/jordancraig/vspizza/issues"
+      "url": "https://github.com/mmarinovic/vscode-dobartek-pizza/issues"
     },
 	"main": "./extension.js",
 	"contributes": {
-		"commands": [{
-            "command": "extension.helloWorld",
-			"title": "Hello World"
-		}]
-	},
+        "commands": [
+            {
+                "command": "extension.dobartekPizza",
+				"title": "Naruči pizzu",
+				"icon": {
+					"light": "./images/dt.png",
+					"dark": "./images/dt.png"
+				  }
+            }
+        ],
+        "configuration": {
+            "type": "object",
+            "title": "dobartek-pizza Configuration",
+            "properties": {
+              "dobartek-pizza.url": {
+                "type": "string",
+                "description": "URL do najdraže pizze na dobartek.hr",
+                "default": "pizzeria-fast-food-lord#jelo-19788"
+              }
+			}
+        },
+        "keybindings": [
+            {
+              "command": "extension.dobartekPizza",
+              "key": "ctrl+f2",
+              "mac": "cmd+f2"
+            }
+        ],
+        "menus": {
+			"editor/context": [
+				{
+				  "command": "extension.dobartekPizza"
+				}
+			  ],
+			  "editor/title": [
+				{
+				  "command": "extension.dobartekPizza",
+				  "group": "navigation"
+				}
+			  ]
+        }
+    },
 	"scripts": {
 		"lint": "eslint .",
 		"pretest": "yarn run lint",
